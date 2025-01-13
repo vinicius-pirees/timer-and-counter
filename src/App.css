@@ -47,12 +47,12 @@ h1 {
 .timer-button {
   background: #008000;
   color: white;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   padding: 0.5rem;
   border: none;
   border-radius: 5px;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,7 +99,7 @@ input[hidden] {
 
 .click-counter button {
   margin: 0.2rem;
-  font-size: 2rem;
+  font-size: 3rem;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 5px;
