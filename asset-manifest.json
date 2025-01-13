@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/timer-and-counter/static/css/main.9bb5b831.css",
+    "main.js": "/timer-and-counter/static/js/main.23b55409.js",
+    "static/js/488.dade06e7.chunk.js": "/timer-and-counter/static/js/488.dade06e7.chunk.js",
+    "index.html": "/timer-and-counter/index.html",
+    "main.9bb5b831.css.map": "/timer-and-counter/static/css/main.9bb5b831.css.map",
+    "main.23b55409.js.map": "/timer-and-counter/static/js/main.23b55409.js.map",
+    "488.dade06e7.chunk.js.map": "/timer-and-counter/static/js/488.dade06e7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9bb5b831.css",
+    "static/js/main.23b55409.js"
+  ]
+}
