@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPause, faRedo, faPlus, faMinus} from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 
 const App = () => {
@@ -7,6 +9,7 @@ const App = () => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [totalSeconds, setTotalSeconds] = useState(0); // Total countdown in seconds
+  const [totalInitialSeconds, setTotalInitialSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [clicksPerMinute, setClicksPerMinute] = useState(null); // Clicks per minute
 
@@ -37,7 +40,7 @@ const App = () => {
 
   // Calculate clicks per minute
   const calculateClicksPerMinute = () => {
-    const totalMinutes = (hours * 3600 + minutes * 60 + seconds) / 60;
+    const totalMinutes = totalInitialSeconds / 60;
     const clicks = totalMinutes > 0 ? (clickCounter / totalMinutes).toFixed(2) : 0;
     setClicksPerMinute(clicks);
   };
@@ -72,7 +75,9 @@ const App = () => {
 
   // Start the countdown
   const startCountdown = () => {
-    setTotalSeconds(hours * 3600 + minutes * 60 + seconds);
+    const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    setTotalSeconds(totalSeconds);
+    setTotalInitialSeconds(totalSeconds)
     setIsRunning(true);
     setClicksPerMinute(null); // Clear previous clicks per minute result
   };
@@ -90,15 +95,21 @@ const App = () => {
 
   return (
     <div className="App">
-      <h2>React Countdown Timer with Click Counter</h2>
+      <h2>Countdown Timer with Click Counter</h2>
 
       {/* Click Counter Section */}
       <div className="click-counter">
         <h1>Counter: {clickCounter}</h1>
         <div>
-          <button onClick={() => setClickCounter((prev) => prev + 1)}>+</button>
-          <button onClick={() => setClickCounter((prev) => Math.max(prev - 1, 0))}>-</button>
-          <button onClick={() => setClickCounter(0)}>Reset</button>
+          <button onClick={() => setClickCounter((prev) => prev + 1)}> 
+            <FontAwesomeIcon icon={faPlus} />
+          </button>
+          <button onClick={() => setClickCounter((prev) => Math.max(prev - 1, 0))}>
+            <FontAwesomeIcon icon={faMinus} />
+          </button>
+          <button onClick={() => setClickCounter(0)}>
+            <FontAwesomeIcon icon={faRedo} />
+          </button>
         </div>
       </div>
 
@@ -109,8 +120,8 @@ const App = () => {
       {/* Hours Section */}
       <div className="time-unit">
         <div className="buttons">
-          <button className="timer-button" onClick={() => increment("hours")}>+</button>
-          <button className="timer-button" onClick={() => decrement("hours")}>-</button>
+          <button className="timer-button" onClick={() => increment("hours")}><FontAwesomeIcon icon={faPlus} /></button>
+          <button className="timer-button" onClick={() => decrement("hours")}><FontAwesomeIcon icon={faMinus} /></button>
         </div>
         {!isRunning && (
           <input
@@ -127,8 +138,8 @@ const App = () => {
       {/* Minutes Section */}
       <div className="time-unit">
         <div className="buttons">
-          <button className="timer-button" onClick={() => increment("minutes")}>+</button>
-          <button className="timer-button" onClick={() => decrement("minutes")}>-</button>
+          <button className="timer-button" onClick={() => increment("minutes")}><FontAwesomeIcon icon={faPlus} /></button>
+          <button className="timer-button" onClick={() => decrement("minutes")}><FontAwesomeIcon icon={faMinus} /></button>
         </div>
         {!isRunning && (
           <input
@@ -145,8 +156,8 @@ const App = () => {
       {/* Seconds Section */}
       <div className="time-unit">
         <div className="buttons">
-          <button className="timer-button" onClick={() => increment("seconds")}>+</button>
-          <button className="timer-button" onClick={() => decrement("seconds")}>-</button>
+          <button className="timer-button" onClick={() => increment("seconds")}><FontAwesomeIcon icon={faPlus} /></button>
+          <button className="timer-button" onClick={() => decrement("seconds")}><FontAwesomeIcon icon={faMinus} /></button>
         </div>
         {!isRunning && (
           <input
@@ -163,8 +174,12 @@ const App = () => {
 
 
       <div className="controls">
-        <button onClick={startCountdown}>Start Timer</button>
-        <button onClick={() => setIsRunning(false)}>Pause Timer</button>
+        <button onClick={startCountdown}>
+          <FontAwesomeIcon icon={faPlay} /> {/* Play icon */}
+        </button>
+        <button onClick={() => setIsRunning(false)}>
+          <FontAwesomeIcon icon={faPause} /> {/* Pause icon */}
+        </button>
         <button
           onClick={() => {
             setIsRunning(false);
